@@ -1,0 +1,38 @@
+$defaut-color:green;
+
+body {
+    background-color: green;
+}
+
+.filterBtn {
+    display: none;
+    position: fixed;
+    right: 4px;
+}
+
+.filter-Section,
+.offcanvas-backdrop {
+    display: none;
+}
+
+.offcanvas-end {
+    width: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+
+    .filterBtn,
+    .filter-Section,
+    .offcanvas-backdrop {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .pageTitle {
+        display: none;
+    }
+}
