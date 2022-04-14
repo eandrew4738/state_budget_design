@@ -50,7 +50,18 @@
       role="tabpanel"
       aria-labelledby="filter-tab"
     >
-      ...
+      <div class="py-3">
+        <button
+          v-for="year in years"
+          :key="year.id"
+          type="button"
+          @click="getData(year)"
+          :class="selectedYear === year ? 'activeBtn' : ''"
+          class="btn btn-outline-primary mb-2 w-100"
+        >
+          {{ year }}
+        </button>
+      </div>
     </div>
     <div
       class="tab-pane fade"
@@ -71,25 +82,47 @@
   </div>
 </template>
 
-<style scoped>
-.nav-link {
-  padding: 0rem 1rem 0.3rem 1rem !important;
+<script lang="ts">
+import { defineComponent } from "vue";
+export default defineComponent({
+  emits: ["filter-data"],
+  data() {
+    return {
+      years: ["2022", "2021"],
+      selectedYear: "2022",
+    };
+  },
+  methods: {
+    getData(Year: any) {
+      this.selectedYear = Year;
+      this.$emit("filter-data", Year);
+    },
+  },
+});
+</script>
+<style lang="scss" scoped>
+.nav-tabs {
+  font-size: 14px;
+  .nav-item {
+    .active {
+      color: $dark-color !important;
+      background-color: transparent;
+      border-color: transparent !important;
+      border-bottom: 2px solid $muted-color !important;
+    }
+    .nav-link {
+      color: $muted-color;
+      padding: 0rem 1rem 0.3rem 1rem !important;
+      &:hover,
+      &:focus {
+        border-color: transparent;
+      }
+    }
+  }
 }
-
-.nav-tabs .nav-link:focus,
-.nav-tabs .nav-link:hover {
-  border-color: transparent;
-}
-
-.nav-tabs .nav-item.show .nav-link,
-.nav-tabs .nav-link.active {
-  color: #495057;
-  background-color: #fff;
-  border-color: transparent;
-  border-bottom: 1px solid;
-}
-
-li button {
-  font-size: 13px;
+.activeBtn {
+  background-color: $primary-color !important;
+  color: $white-color;
+  pointer-events: none;
 }
 </style>

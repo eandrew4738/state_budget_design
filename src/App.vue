@@ -1,20 +1,19 @@
 <template>
+  <page-loader></page-loader>
   <the-header></the-header>
-  <section style="padding-top: 100px">
+  <section style="padding-top: 102px">
     <router-view></router-view>
   </section>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 import TheHeader from "./components/layout/TheHeader.vue";
-
-@Options({
+export default defineComponent({
   components: {
     TheHeader,
   },
-})
-export default class App extends Vue {}
+});
 </script>
 
 <style lang="scss">
@@ -23,7 +22,7 @@ export default class App extends Vue {}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
-  color: $defaut-color;
+  color: $muted-color;
   overflow: auto;
 }
 </style>

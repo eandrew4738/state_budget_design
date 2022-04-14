@@ -1,5 +1,5 @@
 <template>
-  <Bar :chart-data="chartData" :chart-options="chartOptions" height="120" />
+  <Bar :chart-data="chartData" :chart-options="chartOptions" :height="140" />
 </template>
 
 <script lang="ts">
@@ -28,13 +28,35 @@ export default defineComponent({
   components: {
     Bar,
   },
+  data() {
+    return {
+      chartOptions: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            beginAtZero: true,
+            grid: {
+              display: false,
+            },
+          },
+        },
+      },
+    };
+  },
   props: {
     chartData: {
       type: Object,
       required: true,
-    },
-    chartOptions: {
-      type: Object,
     },
   },
 });

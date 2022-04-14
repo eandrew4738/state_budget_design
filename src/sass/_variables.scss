@@ -1,13 +1,80 @@
-$defaut-color:green;
+$primary-color:#2a618b;
+$dark-color: #212529;
+$muted-color:rgba(0, 0, 0, 0.55);
+$grey-color:#dddddd;
+$lightgrey-color:#ebebeb;
+$white-color:#ffff;
+$logo: '/src/assets/noga-holding-logo-2x.png';
 
 body {
-    background-color: green;
+    background: $grey-color;
+}
+
+// Background Colors
+
+.bg-white {
+    background-color: $white-color !important;
+}
+
+.bg-grey {
+    background-color: $grey-color !important;
+}
+
+.bg-lightGrey {
+    background-color: $lightgrey-color !important;
+}
+
+.p-3 {
+    padding: 12px !important;
+}
+
+.px-3 {
+    padding: 0 12px !important;
+}
+
+a.active-route {
+    color: $primary-color !important;
+    text-decoration: underline !important;
+}
+
+//Header Styles
+.header-scroller {
+    height: 2.2rem;
+    overflow-y: hidden;
+    background-color: $white-color;
+    border-radius: 20px;
+    box-shadow: 1px -11px 35px -8px $grey-color inset;
+
+    .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+
+        a {
+            text-decoration: none;
+            font-size: 14px;
+            color: $muted-color;
+            font-weight: bolder;
+        }
+    }
+}
+
+.layout-style {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: none;
 }
 
 .filterBtn {
     display: none;
     position: fixed;
     right: 4px;
+    background-color: $primary-color;
+    color: $white-color;
 }
 
 .filter-Section,
@@ -17,6 +84,56 @@ body {
 
 .offcanvas-end {
     width: auto;
+}
+
+.f-12 {
+    font-size: 12px;
+}
+
+.f-14 {
+    font-size: 14px;
+}
+
+.border-bottom {
+    border-bottom: 1px solid $muted-color !important;
+}
+
+table {
+    border-color: $muted-color !important;
+
+    >:not(:first-child) {
+        border-top: 1px solid $muted-color !important;
+    }
+
+    tr:last-child {
+        border-bottom: transparent;
+
+        td {
+            font-size: 8px;
+            border-bottom: transparent;
+        }
+    }
+
+    th,
+    td {
+        font-size: 12px;
+        border-right: 1px dotted $muted-color;
+        border-bottom: 1px solid $muted-color;
+    }
+
+    th {
+        color: $muted-color;
+    }
+
+    td {
+        color: $dark-color;
+        font-weight: bolder;
+    }
+
+    th:last-child,
+    td:last-child {
+        border-right: transparent;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -35,4 +152,206 @@ body {
     .pageTitle {
         display: none;
     }
+}
+
+// Spinner Style
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    div {
+        animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        transform-origin: 40px 40px;
+
+        &:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: $primary-color;
+            margin: -4px 0 0 -4px;
+        }
+
+        &:nth-child(1) {
+            animation-delay: -0.036s;
+
+            &:after {
+                top: 63px;
+                left: 63px;
+            }
+        }
+
+        &:nth-child(2) {
+            animation-delay: -0.072s;
+
+            &:after {
+                top: 68px;
+                left: 56px;
+            }
+        }
+
+        &:nth-child(3) {
+            animation-delay: -0.108s;
+
+            &:after {
+                top: 71px;
+                left: 48px;
+            }
+        }
+
+        &:nth-child(4) {
+            animation-delay: -0.144s;
+
+            &:after {
+                top: 72px;
+                left: 40px;
+            }
+        }
+
+        &:nth-child(5) {
+            animation-delay: -0.18s;
+
+            &:after {
+                top: 71px;
+                left: 32px;
+            }
+        }
+
+        &:nth-child(6) {
+            animation-delay: -0.216s;
+
+            &:after {
+                top: 68px;
+                left: 24px;
+            }
+        }
+
+        &:nth-child(7) {
+            animation-delay: -0.252s;
+
+            &:after {
+                top: 63px;
+                left: 17px;
+            }
+        }
+
+        &:nth-child(8) {
+            animation-delay: -0.288s;
+
+            &:after {
+                top: 56px;
+                left: 12px;
+            }
+        }
+    }
+}
+
+@keyframes lds-roller {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Page Loader
+.preloader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $lightgrey-color;
+    z-index: 9999;
+
+    .logo {
+        width: 12.5rem;
+        height: 15.5rem;
+        background: url($logo);
+        background-repeat: no-repeat;
+    }
+
+    .circles {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 80px;
+
+        .circle {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: $primary-color;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+
+            &:nth-child(1) {
+                left: 8px;
+                animation: circles1 0.6s infinite;
+            }
+
+            &:nth-child(2) {
+                left: 8px;
+                animation: circles2 0.6s infinite;
+            }
+
+            &:nth-child(3) {
+                left: 32px;
+                animation: circles2 0.6s infinite;
+            }
+
+            &:nth-child(4) {
+                left: 56px;
+                animation: circles3 0.6s infinite;
+            }
+        }
+    }
+
+    @keyframes circles1 {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes circles3 {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(0);
+        }
+    }
+
+    @keyframes circles2 {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        100% {
+            transform: translate(24px, 0);
+        }
+    }
+
+
 }

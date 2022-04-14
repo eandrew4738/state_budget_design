@@ -2,7 +2,7 @@
   <div class="navbar-light bg-light fixed-top">
     <nav class="navbar navbar-expand-md py-0">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"
+        <a class="navbar-brand"
           ><img
             src="../../assets/noga-holding-logo-2x.png"
             width="135"
@@ -26,8 +26,10 @@
               </li>
               <li>
                 <ul class="trail-items">
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">State Budget Monitoring</a></li>
+                  <li><router-link to="Home">Home</router-link></li>
+                  <li>
+                    <a>State Budget Monitoring</a>
+                  </li>
                   <li>Crude Oil</li>
                 </ul>
               </li>
@@ -35,13 +37,17 @@
           </div>
           <ul class="navbar-nav d-flex mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link"><i class="fa-solid fa-house pe-1"></i>Home</a>
+              <router-link to="Home" class="nav-link"
+                ><i class="fa-solid fa-house pe-1"></i>Home</router-link
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link"> <i class="fas fa-user pe-1"></i>Profile</a>
+              <router-link to="Profile" class="nav-link">
+                <i class="fas fa-user pe-1"></i>Profile</router-link
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"
+              <a class="nav-link"
                 ><i class="fas fa-question-circle pe-1"></i>Help</a
               >
             </li>
@@ -49,24 +55,24 @@
         </div>
       </div>
     </nav>
-    <div class="header-scroller">
+    <div class="header-scroller mb-1">
       <div class="container">
         <nav class="nav d-flex justify-content-between">
-          <a class="p-2" href="#">OVERALL</a>
-          <a class="p-2" href="#">CRUDE OIL</a>
-          <a class="p-2" href="#">ABU SAAFA</a>
-          <a class="p-2" href="#">GAS SALES</a>
-          <a class="p-2" href="#">BLING</a>
-          <a class="p-2" href="#">SUBSIDIES</a>
-          <a class="p-2" href="#">DIVIDENDS</a>
-          <a class="p-2" href="#">OTHER</a>
+          <router-link class="p-2" to="Overall">OVERALL</router-link>
+          <router-link class="p-2" to="crudeOil">CRUDE OIL</router-link>
+          <router-link class="p-2" to="AbuSafa">ABU SAAFA</router-link>
+          <a class="p-2">GAS SALES</a>
+          <a class="p-2">BLING</a>
+          <a class="p-2">SUBSIDIES</a>
+          <a class="p-2">DIVIDENDS</a>
+          <a class="p-2">OTHER</a>
         </nav>
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .bg-light {
   background-color: #dddddd !important;
 }
@@ -79,46 +85,31 @@ ul {
   list-style: none;
   margin-bottom: 0;
   padding-left: 1.7rem;
+
+  h6 {
+    color: $primary-color;
+  }
+
+  .trail-items {
+    li {
+      display: inline;
+      font-size: 12px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+    li + li:before {
+      padding: 5px;
+      color: $dark-color;
+      content: "\203A";
+    }
+  }
 }
 
-ul .trail-items li {
-  display: inline;
-  font-size: 13px;
-}
-
-ul .trail-items li + li:before {
-  padding: 5px;
-  color: rgba(0, 0, 0, 0.55);
-  content: "\203A";
-}
-
-ul .trail-items li a {
-  text-decoration: none;
-}
-
-.nav-item a {
-  font-size: 13px;
-}
-
-.header-scroller {
-  height: 2.2rem;
-  overflow-y: hidden;
-  background-color: aqua;
-}
-
-.header-scroller .nav {
-  display: flex;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
-.header-scroller .nav a {
-  text-decoration: none;
-  font-size: 15px;
+.nav-item {
+  a {
+    font-size: 13px;
+  }
 }
 </style>
