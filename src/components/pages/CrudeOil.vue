@@ -21,9 +21,9 @@
                   on a real time basis with the following portfolio structure
                   which has been provided in details on the above menu
                 </p>
-                <base-spinner v-if="!donutChartDatas"></base-spinner>
+                <base-spinner v-if="loading"></base-spinner>
                 <donut-chart
-                  v-if="donutChartDatas"
+                  v-if="!loading"
                   :chartData="donutChartDatas"
                 ></donut-chart>
                 <p class="text-center mt-3">2021 State Budget Forecast</p>
@@ -47,9 +47,9 @@
                                 </div>
                               </div>
                             </div>
-                            <base-spinner v-if="!barChartDatas"></base-spinner>
+                            <base-spinner v-if="loading"></base-spinner>
                             <bar-line-chart
-                              v-if="barChartDatas"
+                              v-if="!loading"
                               :chartData="barChartDatas"
                             ></bar-line-chart>
                           </div>
@@ -101,11 +101,9 @@
                         <i class="fas fa-circle pe-1 text-danger"></i>Behind
                         Schedule
                       </p>
-                      <base-spinner
-                        v-if="varianceTable.length === 0"
-                      ></base-spinner>
+                      <base-spinner v-if="loading"></base-spinner>
                       <base-table
-                        v-if="varianceTable.length > 0"
+                        v-if="!loading"
                         :variance="varianceTable"
                       ></base-table>
                     </div>
@@ -134,6 +132,7 @@
   </div>
 </template>
 <script lang="ts">
+import { Options, Vue } from "vue-class-component";
 import SideBar from "../ui/SideBar.vue";
 import BarLineChart from "../ui/BarLineChart.vue";
 import DonutChart from "../ui/DonutChart.vue";
@@ -141,41 +140,42 @@ import BaseTable from "../ui/BaseTable.vue";
 import { defineComponent } from "@vue/runtime-core";
 import * as staticData from "./staticData.data";
 
-export default defineComponent({
-  name: "CrudeOil",
+@Options({
   components: {
     SideBar,
     BarLineChart,
     DonutChart,
     BaseTable,
   },
-  data() {
-    return {
-      budget: "USD 3.745 million",
-      forcast: "USD 3.900 million",
-      barChartDatas: null,
-      donutChartDatas: null,
-      varianceTable: [],
-      staticData: staticData,
-    };
+  props: {
+    msg: String,
   },
   mounted() {
     this.getData("2022");
   },
   methods: {
     getData(year: any) {
-      this.barChartDatas = null;
-      this.donutChartDatas = null;
-      this.varianceTable = [];
+      this.loading = true;
       setTimeout(() => {
         const data = this.staticData.datas.filter(
-          (find) => find.field === year
+          (find: any) => find.field === year
         );
         this.barChartDatas = data[0].barChartDatas;
         this.donutChartDatas = data[0].donutChartDatas;
         this.varianceTable = data[0].varianceTable;
+        this.loading = false;
       }, 3000);
     },
   },
-});
+})
+export default class CrudeOil extends Vue {
+  msg!: string;
+  budget = "USD 3.745 million";
+  forcast = "USD 3.900 million";
+  barChartDatas = {};
+  donutChartDatas = {};
+  varianceTable = [{}];
+  staticData = staticData;
+  loading = false;
+}
 </script>

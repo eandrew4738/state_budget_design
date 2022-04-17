@@ -47,16 +47,18 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from "vue";
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
 
-export default defineComponent({
+@Options({
   props: {
     variance: {
       type: Array,
       required: true,
     },
   },
-});
+})
+export default class BaseTable extends Vue {}
 </script>
+
 

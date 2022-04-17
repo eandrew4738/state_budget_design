@@ -69,7 +69,7 @@
       role="tabpanel"
       aria-labelledby="scenarios-tab"
     >
-      ...
+      ...Scenarios...
     </div>
     <div
       class="tab-pane fade"
@@ -77,29 +77,29 @@
       role="tabpanel"
       aria-labelledby="report-tab"
     >
-      ...
+      ...Reports...
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
+import { Options, Vue } from "vue-class-component";
+
+@Options({
   emits: ["filter-data"],
-  data() {
-    return {
-      years: ["2022", "2021"],
-      selectedYear: "2022",
-    };
-  },
   methods: {
     getData(Year: any) {
       this.selectedYear = Year;
       this.$emit("filter-data", Year);
     },
   },
-});
+})
+export default class SideBar extends Vue {
+  years = ["2022", "2021"];
+  selectedYear = "2022";
+}
 </script>
+
 <style lang="scss" scoped>
 .nav-tabs {
   font-size: 14px;

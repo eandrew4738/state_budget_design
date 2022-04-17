@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+import { Options, Vue } from "vue-class-component";
 import { Doughnut } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -27,25 +28,12 @@ import {
   ArcElement,
   CategoryScale,
 } from "chart.js";
-import { defineComponent } from "vue";
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
 
-export default defineComponent({
+@Options({
   components: {
     Doughnut,
-  },
-  data() {
-    return {
-      chartOptions: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-      },
-    };
   },
   props: {
     chartData: {
@@ -53,7 +41,17 @@ export default defineComponent({
       required: true,
     },
   },
-});
+})
+export default class DonutChart extends Vue {
+  chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
+}
 </script>
 
 <style lang="scss">

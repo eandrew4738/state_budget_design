@@ -3,6 +3,7 @@
 </template>
 
 <script lang="ts">
+import { Options, Vue } from "vue-class-component";
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -13,7 +14,6 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
-import { defineComponent } from "vue";
 
 ChartJS.register(
   Title,
@@ -23,35 +23,9 @@ ChartJS.register(
   CategoryScale,
   LinearScale
 );
-
-export default defineComponent({
+@Options({
   components: {
     Bar,
-  },
-  data() {
-    return {
-      chartOptions: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-        scales: {
-          x: {
-            grid: {
-              display: false,
-            },
-          },
-          y: {
-            beginAtZero: true,
-            grid: {
-              display: false,
-            },
-          },
-        },
-      },
-    };
   },
   props: {
     chartData: {
@@ -59,6 +33,29 @@ export default defineComponent({
       required: true,
     },
   },
-});
+})
+export default class BarLineChart extends Vue {
+  chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        beginAtZero: true,
+        grid: {
+          display: false,
+        },
+      },
+    },
+  };
+}
 </script>
 

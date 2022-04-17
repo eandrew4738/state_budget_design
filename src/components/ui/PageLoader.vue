@@ -12,13 +12,9 @@
   </transition>
 </template>
 <script lang="ts">
-import { defineComponent } from "vue";
-export default defineComponent({
-  data() {
-    return {
-      show: true,
-    };
-  },
+import { Options, Vue } from "vue-class-component";
+
+@Options({
   mounted() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
@@ -28,12 +24,8 @@ export default defineComponent({
       }
     };
   },
-  // methods: {
-  //   showToggle() {
-  //     setTimeout(() => {
-  //       this.show = false;
-  //     }, 1000);
-  //   },
-  // },
-});
+})
+export default class PageLoader extends Vue {
+  show = true;
+}
 </script>

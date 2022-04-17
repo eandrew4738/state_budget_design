@@ -7,13 +7,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { Options, Vue } from "vue-class-component";
 import TheHeader from "./components/layout/TheHeader.vue";
-export default defineComponent({
+
+@Options({
   components: {
     TheHeader,
   },
-});
+})
+export default class App extends Vue {
+  loading = true;
+}
 </script>
 
 <style lang="scss">
@@ -21,7 +25,6 @@ export default defineComponent({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
   color: $muted-color;
   overflow: auto;
 }
