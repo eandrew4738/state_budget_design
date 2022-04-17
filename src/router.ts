@@ -4,7 +4,6 @@ import CrudeOil from "./components/pages/CrudeOil.vue";
 import HomePage from "./components/pages/HomePage.vue";
 import OverallPage from "./components/pages/OverallPage.vue";
 import ProfilePage from "./components/pages/ProfilePage.vue";
-import App from "./App.vue";
 
 const router = createRouter({
   linkActiveClass: "active-route",

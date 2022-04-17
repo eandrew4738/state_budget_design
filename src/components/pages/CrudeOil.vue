@@ -137,7 +137,6 @@ import SideBar from "../ui/SideBar.vue";
 import BarLineChart from "../ui/BarLineChart.vue";
 import DonutChart from "../ui/DonutChart.vue";
 import BaseTable from "../ui/BaseTable.vue";
-import { defineComponent } from "@vue/runtime-core";
 import * as staticData from "./staticData.data";
 
 @Options({
